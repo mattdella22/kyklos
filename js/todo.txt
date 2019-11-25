@@ -1,2 +1,3 @@
 generazione di dischi "dinamici" con variabili...
 -più modalità (suono, sensori,...)
+-rendere perpetuo
