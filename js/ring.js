@@ -1,10 +1,8 @@
 class Ring {
     constructor(r, angle) {
         this.pathHistory = [];
-
         this.r = r;
         this.angle = angle;
-
         this.current = createVector();
     }
 
@@ -23,12 +21,16 @@ class Ring {
 
     show() {
         //strokeWeight(5);
-        stroke(255, 0, 0);
+        stroke(255,255,255);
+        strokeWeight(2)
+        //fill(255,255,255,180);
+        noFill();
         beginShape();
-        for(let i = 0; i < this.pathHistory.length; i++){
-        	vertex(this.pathHistory[i].x, this.pathHistory[i].y)
+        for(let v of this.pathHistory){
+            vertex(v.x, v.y)
         }
         endShape();
+        this.current = createVector();
     }
 
 
@@ -39,6 +41,9 @@ class Ring {
     erase(){
     	//Cancello dall'history i punti partendo dal fondo (pathHistory[pathHistory.lenght])
     	//"rompo"la forma all'ultimo punto, così che avrò sempre una linea aperta...
+        if(this.angle > radians(270)){
+            this.pathHistory.shift();
+        }
     }
 
 }
