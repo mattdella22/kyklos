@@ -31,13 +31,14 @@ class Ring {
     }
 
 
-    rotate() {
-        this.angle += 0.05;
+    rotate(reduce) {
+        this.angle += 0.05*reduce;
     }
 
     erase() {
         if (this.angle > radians(270)) {
             this.pathHistory.shift();
+            //this.pathHistory.length = 94;
         }
     }
 

@@ -17,16 +17,34 @@ function setup() {
 }
 
 function draw() {
-    if (touches.length>0) {
+    translate(width / 2, height / 2);
+    if (touches.length > 0) {
+        scale(1-factor*0.005)
         background(0, 0, 0, 15 / factor)
-        factor = factor * 2.4;
+        factor = factor + 0.1;
+        for (let i = 0; i < rings.length; i++) {
+            rings[i].rotate(0.09);
+            rings[i].update();
+            rings[i].erase();
+            rings[i].show();
+
+        }
+        
+
     } else {
         background(0, 0, 0, 40);
+        scale(1);
+        factor=1.2;
+        for (let i = 0; i < rings.length; i++) {
+            rings[i].rotate(1);
+            rings[i].update();
+            rings[i].erase();
+            rings[i].show();
+
+        }
     }
 
-    translate(width / 2, height / 2);
 
-    scale(1);
 
     /*
     alpha = alpha-45;//tolgo 45 gradi ad alpha, per fare cominciare lo 0 prima...
@@ -38,17 +56,10 @@ function draw() {
     //let newGamma = map(gamma, -90, 90, -20, 52);
 
 
-    for (let i = 0; i < rings.length; i++) {
-        rings[i].rotate();
-        rings[i].update(-i * 0.1414);
-        rings[i].erase();
-        rings[i].show();
-
-    }
 
     //DEBUG
     let txt = "rings[0].current =" + rings[0].current;
-    txt += "<br> acceleration z =" ;
+    txt += "<br> acceleration z =";
 
     debug(txt);
 }
