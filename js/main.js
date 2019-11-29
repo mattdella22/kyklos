@@ -9,7 +9,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 
 
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i < 7; i++) {
         rings[i] = new Ring(11 + i * 18, i * 0.1414)
     }
 
@@ -19,8 +19,8 @@ function setup() {
 function draw() {
     translate(width / 2, height / 2);
     if (touches.length > 0) {
-        scale(1-factor*0.005)
-        background(0, 0, 0, 15 / factor)
+        //scale(1-factor*0.009)
+        background(0, 0, 0, 15 / factor*0.5)
         factor = factor + 0.1;
         for (let i = 0; i < rings.length; i++) {
             rings[i].rotate(0.09);
@@ -28,6 +28,11 @@ function draw() {
             rings[i].erase();
             rings[i].show();
 
+        }
+        if(frameCount%60 == 0){
+            let lastR = giveMeR();
+            let lastAngle = giveMeActualAngle();
+            rings.push(new Ring(lastR+18, lastAngle*0.1414));
         }
         
 
@@ -39,7 +44,7 @@ function draw() {
             rings[i].rotate(1);
             rings[i].update();
             rings[i].erase();
-            rings[i].show();
+            rings[i].show(1);
 
         }
     }
@@ -62,6 +67,18 @@ function draw() {
     txt += "<br> acceleration z =";
 
     debug(txt);
+}
+
+
+
+function giveMeR(){
+        let lastR = rings[rings.length-1].r;
+        return lastR;
+    }
+
+function giveMeActualAngle(){
+    let lastAngle = rings[rings.length-1].angle;
+    return lastAngle;
 }
 
 function debug(val) {

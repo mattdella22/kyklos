@@ -6,6 +6,7 @@ class Ring {
         this.current = createVector();
     }
 
+
     update() {
         this.x = this.r  * cos(this.angle);
         this.y = this.r * sin(this.angle);
