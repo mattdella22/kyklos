@@ -9,42 +9,41 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 17; i++) {
         rings[i] = new Ring(11 + i * 18, i * 0.1414)
     }
 
     background(0);
 }
 
-function draw() {
+function draw() { 
     translate(width / 2, height / 2);
+    //gamma = gamma -180;
+    let newGamma = map(gamma, -90, 90, -0.5, 0.5); 
+    
+
     if (touches.length > 0) {
-        //scale(1-factor*0.009)
-        background(0, 0, 0, 15 / factor*0.5)
         factor = factor + 0.1;
+        background(0, 0, 0, 15 * factor * 0.05)
+        scale(1 - factor * 0.009)
         for (let i = 0; i < rings.length; i++) {
-            rings[i].rotate(0.09);
+            rings[i].rotate(newGamma/factor*0.3);
             rings[i].update();
-            rings[i].erase();
+            rings[i].erase(newGamma);
             rings[i].show();
 
         }
-        if(frameCount%60 == 0){
-            let lastR = giveMeR();
-            let lastAngle = giveMeActualAngle();
-            rings.push(new Ring(lastR+18, lastAngle*0.1414));
-        }
-        
+
 
     } else {
+        factor = 1.2;
         background(0, 0, 0, 40);
         scale(1);
-        factor=1.2;
         for (let i = 0; i < rings.length; i++) {
-            rings[i].rotate(1);
+            rings[i].rotate(newGamma);
             rings[i].update();
-            rings[i].erase();
-            rings[i].show(1);
+            rings[i].erase(gamma);
+            rings[i].show();
 
         }
     }
@@ -58,7 +57,7 @@ function draw() {
     */
 
 
-    //let newGamma = map(gamma, -90, 90, -20, 52);
+    
 
 
 
@@ -71,13 +70,13 @@ function draw() {
 
 
 
-function giveMeR(){
-        let lastR = rings[rings.length-1].r;
-        return lastR;
-    }
+function giveMeR() {
+    let lastR = rings[rings.length - 1].r;
+    return lastR;
+}
 
-function giveMeActualAngle(){
-    let lastAngle = rings[rings.length-1].angle;
+function giveMeActualAngle() {
+    let lastAngle = rings[rings.length - 1].angle;
     return lastAngle;
 }
 

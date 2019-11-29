@@ -33,13 +33,13 @@ class Ring {
 
 
     rotate(reduce) {
-        this.angle += 0.05*reduce;
+        this.angle += 0.3*reduce;
     }
 
-    erase() {
-        if (this.angle > radians(270)) {
+    erase(gamma) {
+        let newGamma = map(gamma, -90, 90, -20, 10)
+        if (this.pathHistory.length > 20 + newGamma) {//è errato?
             this.pathHistory.shift();
-            //this.pathHistory.length = 94;
         }
     }
 
