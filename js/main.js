@@ -9,8 +9,9 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 
 
-    for (let i = 0; i < 17; i++) {
-        rings[i] = new Ring(11 + i * 18, i * 0.1414)
+    for (let i = 0; i < 15; i++) {
+        //rings[i] = new Ring(11 + i * 18, i * 0.1414)
+        rings[i] = new Ring(11 + i * 19, -HALF_PI)
     }
 
     background(0);
@@ -27,7 +28,10 @@ function draw() {
         background(0, 0, 0, 15 * factor * 0.05)
         scale(1 - factor * 0.009)
         for (let i = 0; i < rings.length; i++) {
-            rings[i].rotate(newGamma/factor*0.3);
+            rings[i].restart();
+            //rings[i].angle = -HALF_PI
+            //rings[i].rotate(newGamma/factor*0.3);
+            //rings[i].rotate(-HALF_PI);
             rings[i].update();
             rings[i].erase(newGamma);
             rings[i].show();
@@ -40,7 +44,7 @@ function draw() {
         background(0, 0, 0, 40);
         scale(1);
         for (let i = 0; i < rings.length; i++) {
-            rings[i].rotate(newGamma);
+            rings[i].rotate(i*0.31* newGamma);
             rings[i].update();
             rings[i].erase(gamma);
             rings[i].show();
