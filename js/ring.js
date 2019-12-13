@@ -35,7 +35,12 @@ class Ring {
 
 
     rotate(delay) {
-        this.angle += 0.1 * delay;
+        //quando si raggiunge 360°, risettare a 0 l'angolo, per evitare di caricare l'angolo.
+        if (this.angle >= radians(360)) {
+            this.angle = 0;
+        } else {
+            this.angle += 0.1 * delay;
+        }
     }
 
     restart() {
@@ -44,12 +49,12 @@ class Ring {
         let startingAngle = atan(this.startingPoint.x / this.startingPoint.y)
         let distance = this.angle - startingAngle;
 
-        if(distance != 0){
-            this.angle = distance-distance*0.05;//in questo modo mi assicuro che arrivo sempre a 0
+        if (distance != 0) {
+            this.angle = distance - distance * 0.05; //usando distance*0.005 mi assicuro che arrivo sempre a 0
         } else {
             this.angle = startingAngle;
         }
-        
+
     }
 
     erase(gamma) {
