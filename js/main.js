@@ -52,19 +52,6 @@ function draw() {
         }
     }
 
-
-
-    /*
-    alpha = alpha-45;//tolgo 45 gradi ad alpha, per fare cominciare lo 0 prima...
-    let constrainAlpha = constrain(alpha, 0, 90);
-    let newAlpha = map(constrainAlpha, 0, 90, 0, 50);
-    */
-
-
-    
-
-
-
     //DEBUG
     let txt = "rings[0].current =" + rings[0].current;
     txt += "<br> acceleration z =";
@@ -72,17 +59,6 @@ function draw() {
     debug(txt);
 }
 
-
-
-function giveMeR() {
-    let lastR = rings[rings.length - 1].r;
-    return lastR;
-}
-
-function giveMeActualAngle() {
-    let lastAngle = rings[rings.length - 1].angle;
-    return lastAngle;
-}
 
 function debug(val) {
     document.querySelector("#debug").innerHTML = "Debug : <br>" + val;

@@ -45,12 +45,11 @@ class Ring {
 
     restart() {
         //calcolo la distanza in base al vettore pos. originale --> prima ricavo i gradi θ = tan-1 ( y / x )
-
-        let startingAngle = atan(this.startingPoint.x / this.startingPoint.y)
+        let startingAngle = atan(this.startingPoint.x / this.startingPoint.y);
         let distance = this.angle - startingAngle;
 
         if (distance != 0) {
-            this.angle = distance - distance * 0.05; //usando distance*0.005 mi assicuro che arrivo sempre a 0
+            this.angle = distance - distance * 0.07; //usando distance*0.07 mi assicuro che arrivo sempre a 0
         } else {
             this.angle = startingAngle;
         }
@@ -59,7 +58,7 @@ class Ring {
 
     erase(gamma) {
         let newGamma = map(gamma, -90, 90, -20, 10)
-        if (this.pathHistory.length > 20 + newGamma) { //è errato?
+        if (this.pathHistory.length > 20 + newGamma) { //è errato?... perchè mappo ancora gamma se già entra mappato? valuta se cancellare
             this.pathHistory.shift();
         }
     }
